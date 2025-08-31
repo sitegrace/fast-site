@@ -1,11 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <h1>DIVINE LUMIÈRE PRO SERVICE</h1>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immo Service - Accueil</title>
+  <!-- Lien vers le fichier CSS externe -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <h1>VENTE DES PARCELLES SÉCURISÉES</h1>
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slides">
+      <img src="slide1.jpg" alt="Parcelle à vendre">
+      <img src="slide2.jpg" alt="Appartement à louer">
+      <img src="slide3.jpg" alt="Maison moderne">
+      <img src="slide4.jpg" alt="Chambre disponible">
+    </div>
+    <!-- Boutons -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+    <!-- Points -->
+    <div class="dots"></div>
+  </div>
+
+  <header>
+    <h1>DIVINE LUMIÈRE PRO SERVICE</h1>
+    <p>Votre partenaire immobilier depuis le 14 Août 2020</p>
+    <nav>
+      <a href="#">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="apropos">
+    <h2>À propos de nous</h2>
+    <p class="intro">
+      DIVINE LUMIÈRE PRO SERVICE est une entreprise spécialisée dans la vente de <strong>parcelles avec Titre Foncier</strong>, 
+      ainsi que dans la location d’appartements, maisons et chambres.  
+      Forte de son expérience et disposant de nombreux biens immobiliers légalement reconnus,  
+      elle respecte toutes les lois administratives relatives au patrimoine immobilier.
+    </p>
+  </section>
+
+  <section id="services">
+    <h2>Nos Services</h2>
+    <div class="services">
+      <div class="card">
+        <img src="image1.jpg" alt="Parcelle">
+        <h3>Vente de Parcelles</h3>
+        <p>Parcelles sécurisées avec Titre Foncier garanti.</p>
+      </div>
+      <div class="card">
+        <img src="image2.jpg" alt="Appartement">
+        <h3>Location d’Appartements</h3>
+        <p>Des appartements confortables adaptés à vos besoins.</p>
+      </div>
+      <div class="card">
+        <img src="image3.jpg" alt="Maison">
+        <h3>Location de Maisons</h3>
+        <p>Maisons modernes et traditionnelles à des prix compétitifs.</p>
+      </div>
+      <div class="card">
+        <img src="image4.jpg" alt="Chambre">
+        <h3>Chambres à Louer</h3>
+        <p>Chambres meublées et non meublées disponibles immédiatement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contactez-nous</h2>
+    <div class="contact">
+      <p>
+        📍 Adresse : Cotonou, Bénin <br>
+        📞 Téléphone : +229 01 96 25 88 41<br>
+        📧 Email : deogracias@gmail.com
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DIVINE LUMIÈRE PRO SERVICE- Tous droits réservés</p>
+  </footer>
+
+  <!-- SCRIPT SLIDER -->
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelector('.slides');
+    const images = document.querySelectorAll('.slides img');
+    const totalSlides = images.length;
+    const dotsContainer = document.querySelector('.dots');
+
+    // Créer les points
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => showSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+      slideIndex = index;
+      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[slideIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+      showSlide(slideIndex);
+    }
+
+    document.querySelector('.next').addEventListener('click', nextSlide);
+    document.querySelector('.prev').addEventListener('click', prevSlide);
+
+    // Auto défilement
+    setInterval(nextSlide, 5000);
+  </script>
+
 </body>
 </html>
